@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recipe Finder App</title>
+    <meta name="description" content="Search and discover delicious recipes using real-time APIs." />
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+
+    <script type="module" src="js/main.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍽️ Recipe Finder</h1>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <form id="search-form">
+                <label for="search-input">Search Recipes</label>
+                <input type="text" id="search-input" placeholder="e.g. chicken, pasta..." required />
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section id="results" class="results-grid" aria-live="polite"></section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Recipe Finder App</p>
+    </footer>
+
+    <div id="modal-root"></div>
+
+</body>
+
+</html>
