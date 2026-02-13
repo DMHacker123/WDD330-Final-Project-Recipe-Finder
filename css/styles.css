@@ -1,22 +1,33 @@
+/* =========================
+   RESET
+========================= */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: "Inter", system-ui, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
+/* =========================
+   ROOT VARIABLES
+========================= */
+:root {
+    --primary: #e85d32;
+    --primary-dark: #cc4a24;
+    --background: #f9f9f9;
+    --surface: #ffffff;
+    --text-main: #222;
+    --text-muted: #555;
+    --radius: 8px;
 }
 
-header,
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #ff7043;
-    color: white;
+/* =========================
+   BASE STYLES
+========================= */
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background-color: var(--background);
+    color: var(--text-main);
+    line-height: 1.6;
 }
 
 h1,
@@ -33,8 +44,48 @@ h1 {
 h3 {
     font-size: 1.1rem;
 }
-.search-section {
+
+button,
+input {
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+/* =========================
+   HEADER & FOOTER
+========================= */
+.site-header,
+footer {
+    text-align: center;
     padding: 1rem;
+    background-color: var(--primary);
+    color: white;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-list a:hover,
+.nav-list a:focus,
+.nav-list a.active {
+    text-decoration: underline;
+}
+
+/* =========================
+   SEARCH SECTION
+========================= */
+.search-section {
+    padding: 1.5rem 1rem;
     text-align: center;
 }
 
@@ -45,34 +96,165 @@ form {
     flex-wrap: wrap;
 }
 
-input {
-    padding: 0.5rem;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+}
+
+form label {
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+form input {
+    padding: 0.6rem;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
     width: 220px;
 }
 
+/* =========================
+   BUTTONS
+========================= */
 button {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    background-color: #ff7043;
-    border: none;
+    background-color: var(--primary);
     color: white;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.6rem 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
 }
 
-button,
-input {
-    font-family: "Inter", system-ui, sans-serif;
+button:hover {
+    background-color: var(--primary-dark);
 }
 
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+    outline: 3px solid rgba(232, 93, 50, 0.4);
+    outline-offset: 2px;
+}
+
+/* =========================
+   RESULTS GRID
+========================= */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1rem;
 }
 
+/* Tablet */
+@media (min-width: 600px) {
+    .results-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .results-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =========================
+   RECIPE CARD
+========================= */
 .recipe-card {
-    background: white;
-    border-radius: 8px;
+    position: relative;
+    background-color: var(--surface);
+    border-radius: var(--radius);
     overflow: hidden;
+    text-align: center;
     cursor: pointer;
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.recipe-card h3 {
+    padding: 0.75rem;
+    color: var(--text-main);
+}
+
+/* =========================
+   FAVORITE BUTTON
+========================= */
+.favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.modal {
+    background: white;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+}
+
+.close-modal {
+    float: right;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+.skip-link {
+    position: absolute;
+    left: -999px;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    background: black;
+    color: white;
+    padding: 0.5rem;
+    z-index: 1000;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0);
 }

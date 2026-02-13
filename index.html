@@ -5,9 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Recipe Finder App</title>
+    <title>Recipe Finder | Search & Discover Recipes</title>
     <meta name="description" content="Search and discover delicious recipes using real-time APIs." />
-    
+    <meta name="author" content="Darwin Matos" />
+    <meta name="theme-color" content="#ff7043">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,35 +18,69 @@
         rel="stylesheet" />
 
     <!-- Favicon -->
-
-    <link rel="icon" href="/WDD330-Final-Project-Recipe-Finder/assets/favicon/favicon.ico" sizes="any">
-
     <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
 
-    <meta name="theme-color" content="#ff7043">
-
+    <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/animations.css" />
 
-    <script type="module" src="js/main.js" defer></script>
+    <!-- JavaScript Module (no defer needed) -->
+    <script type="module" src="js/main.js"></script>
 </head>
 
 <body>
 
-    <header>
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+    <header class="site-header">
         <h1>🍽️ Recipe Finder</h1>
+
+        <nav aria-label="Main navigation">
+            <ul class="nav-list">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#" id="favorites-link">Favorites</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section class="search-section">
+    <main id="main-content">
+
+        <section class="search-section" aria-labelledby="search-heading">
+            <h2 id="search-heading" class="visually-hidden">
+                Search Recipes
+            </h2>
+
             <form id="search-form">
-                <label for="search-input">Search Recipes</label>
-                <input type="text" id="search-input" placeholder="e.g. chicken, pasta..." required />
-                <button type="submit">Search</button>
+                <div class="form-group">
+                    <label for="search-input">Search Recipes</label>
+                    <input type="text" id="search-input" name="search" placeholder="e.g. chicken, pasta..." required
+                        autocomplete="off" />
+                </div>
+
+                <div class="form-group">
+                    <label for="diet-filter">Diet Filter</label>
+                    <select id="diet-filter" name="diet">
+                        <option value="">Any Diet</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="ketogenic">Keto</option>
+                    </select>
+                </div>
+
+                <button type="submit" aria-label="Search recipes">
+                    Search
+                </button>
             </form>
         </section>
 
-        <section id="results" class="results-grid" aria-live="polite"></section>
+        <section id="results" class="results-grid" aria-live="polite" aria-label="Recipe search results">
+        </section>
+
+        <div id="loader" class="loader hidden" aria-live="polite"></div>
+
     </main>
 
     <footer>
